@@ -9,11 +9,6 @@
     {
         
     }
-    
-    public class LiquidationScenario : IScenario
-    {
-
-    }
 
     public class StressTestScenario : IScenario
     {
