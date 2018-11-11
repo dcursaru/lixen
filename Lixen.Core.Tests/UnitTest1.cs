@@ -8,6 +8,15 @@ namespace Lixen.Core.Tests
         [Fact]
         public void Test1()
         {
+            // Arrange
+            var builder = ScenarioBuilder.Create<LiquidationScenario>();
+            
+            // Act
+            var scenario = builder.Build();
+            
+            // Assert
+            Assert.IsType<IScenario>(scenario);
+
         }
     }
 }

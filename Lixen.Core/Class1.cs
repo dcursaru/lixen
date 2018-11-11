@@ -5,13 +5,18 @@
 
     }
 
-    public class ScenarioBuilder
+    public interface IScenario
+    {
+        
+    }
+    
+    public class LiquidationScenario : IScenario
     {
 
     }
 
-    public class Scenario
+    public class StressTestScenario : IScenario
     {
-
+        
     }
 }
