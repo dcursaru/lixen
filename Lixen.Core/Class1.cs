@@ -4,9 +4,4 @@
     {
 
     }
-
-    public class StressTestScenario : IScenario
-    {
-        
-    }
 }
