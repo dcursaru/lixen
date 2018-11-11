@@ -5,11 +5,6 @@
 
     }
 
-    public interface IScenario
-    {
-        
-    }
-
     public class StressTestScenario : IScenario
     {
         
