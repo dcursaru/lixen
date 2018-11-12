@@ -7,12 +7,10 @@ namespace Lixen.Core
         private readonly AbstractSpecification<T> _left;
         private readonly AbstractSpecification<T> _right;
 
-
         public AndSpecification(AbstractSpecification<T> left, AbstractSpecification<T> right) {
             _right = right;
             _left = left;
         }
-
 
         public override Expression<Func<T, bool>> ToExpression() {
             Expression<Func<T, bool>> leftExpression = _left.ToExpression();
