@@ -5,27 +5,26 @@ namespace Lixen.Core
 {
     public class OrSpecification<T> : AbstractSpecification<T> 
     {
-        private readonly AbstractSpecification<T> _left;
-        private readonly AbstractSpecification<T> _right;
+        private readonly AbstractSpecification<T> _leftSpecification;
+        private readonly AbstractSpecification<T> _rightSpecification;
 
 
         public OrSpecification(AbstractSpecification<T> left, AbstractSpecification<T> right) {
-            _right = right;
-            _left = left;
+            _rightSpecification = right;
+            _leftSpecification = left;
         }
 
 
         public override Expression<Func<T, bool>> ToExpression() {
-            var leftExpression = _left.ToExpression();
-            var rightExpression = _right.ToExpression();
+            var leftExpression = _leftSpecification.ToExpression();
+            var rightExpression = _rightSpecification.ToExpression();
             
-            var parameterExpression = Expression.Parameter(typeof(T));
-            var expressionBody = Expression.OrElse(leftExpression.Body, rightExpression.Body);
-            expressionBody = (BinaryExpression)new ParameterReplacer(parameterExpression).Visit(expressionBody);
-            
-            var result = Expression.Lambda<Func<T, bool>>(expressionBody, parameterExpression);
+            var parameter = Expression.Parameter(typeof(T));
+            var body = Expression.OrElse(leftExpression.Body, rightExpression.Body);
+            body = (BinaryExpression)new ParameterReplacer(parameter).Visit(body);
 
-            return result;
+            return Expression.Lambda<Func<T, bool>>(
+                body ?? throw new InvalidOperationException("Expression body cannot be null"), parameter);
         }
     }
 }

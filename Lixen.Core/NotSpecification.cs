@@ -5,23 +5,21 @@ namespace Lixen.Core
 {
     public class NotSpecification<T> : AbstractSpecification<T> 
     {
-        private readonly AbstractSpecification<T> _spec;
+        private readonly AbstractSpecification<T> _specification;
 
-        public NotSpecification(AbstractSpecification<T> spec)
+        public NotSpecification(AbstractSpecification<T> specification)
         {
-            _spec = spec;
+            _specification = specification;
         }
 
         public override Expression<Func<T, bool>> ToExpression() {
-            var spec = _spec.ToExpression();
-            
-            var parameterExpression = Expression.Parameter(typeof(T));
-            var expressionBody = Expression.Not(spec.Body);
-            expressionBody = (UnaryExpression)new ParameterReplacer(parameterExpression).Visit(expressionBody);
-            
-            var result = Expression.Lambda<Func<T, bool>>(expressionBody, parameterExpression);
+            var spec = _specification.ToExpression();
+            var parameter = Expression.Parameter(typeof(T));
+            var body = Expression.Not(spec.Body);
+            body = (UnaryExpression)new ParameterReplacer(parameter).Visit(body);
 
-            return result;
+            return Expression.Lambda<Func<T, bool>>(
+                body ?? throw new InvalidOperationException("Null expression body"), parameter);
         }
     }
 }

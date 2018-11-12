@@ -4,24 +4,25 @@ using System.Linq.Expressions;
 namespace Lixen.Core
 {
     public class AndSpecification<T> : AbstractSpecification<T> {
-        private readonly AbstractSpecification<T> _left;
-        private readonly AbstractSpecification<T> _right;
+        private readonly AbstractSpecification<T> _leftSpecification;
+        private readonly AbstractSpecification<T> _rightSpecification;
 
         public AndSpecification(AbstractSpecification<T> left, AbstractSpecification<T> right) {
-            _right = right;
-            _left = left;
+            _rightSpecification = right;
+            _leftSpecification = left;
         }
 
         public override Expression<Func<T, bool>> ToExpression() {
-            Expression<Func<T, bool>> leftExpression = _left.ToExpression();
-            Expression<Func<T, bool>> rightExpression = _right.ToExpression();
+            var leftExpression = _leftSpecification.ToExpression();
+            var rightExpression = _rightSpecification.ToExpression();
 
-            var paramExpr = Expression.Parameter(typeof(T));
-            var exprBody = Expression.AndAlso(leftExpression.Body, rightExpression.Body);
-            exprBody = (BinaryExpression)new ParameterReplacer(paramExpr).Visit(exprBody);
-            var finalExpr = Expression.Lambda<Func<T, bool>>(exprBody, paramExpr);
+            var parameter = Expression.Parameter(typeof(T));
+            var body = Expression.AndAlso(leftExpression.Body, rightExpression.Body);
+            body = (BinaryExpression)new ParameterReplacer(parameter).Visit(body);
 
-            return finalExpr;
+            return Expression.Lambda<Func<T, bool>>(
+                body ?? throw new InvalidOperationException("Null expression body"), parameter);
+
         }
 
 
