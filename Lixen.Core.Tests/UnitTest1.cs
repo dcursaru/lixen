@@ -15,7 +15,7 @@ namespace Lixen.Core.Tests
             var scenario = builder.Build();
             
             // Assert
-            Assert.IsType<IScenario>(scenario);
+            Assert.IsType<IScenario<LiquidationScenario>>(scenario);
 
         }
     }

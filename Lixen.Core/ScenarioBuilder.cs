@@ -26,17 +26,16 @@ namespace Lixen.Core
 //            return OfType(typeof(T));
 //        }
         
-        public static ScenarioBuilder Create<T>() where T : IScenario
+        public static ScenarioBuilder Create<T>() where T : IScenario<T>
         {
             var builder = new ScenarioBuilder();
             builder.SetType(typeof(T));
             return builder;
         }
 
-        public IScenario Build()
+        public IScenario<LiquidationScenario> Build()
         {
-            
-            return new LiquidationScenario();
+            return null;// new LiquidationScenario();
         }
         
     }
