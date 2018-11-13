@@ -18,7 +18,6 @@ namespace Lixen.Core
             return new AndSpecification<T>(this, specification);
         }
 
-
         public AbstractSpecification<T> Or(AbstractSpecification<T> specification) 
         {
             return new OrSpecification<T>(this, specification);
