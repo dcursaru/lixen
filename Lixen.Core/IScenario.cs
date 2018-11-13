@@ -15,4 +15,10 @@ namespace Lixen.Core
     {
         double LiquidationFactor { get; }
     }
+
+    public interface IPosition
+    {
+        string Id { get; }
+        string Broker { get; }
+    }
 }

@@ -3,7 +3,8 @@ using System.Linq.Expressions;
 
 namespace Lixen.Core
 {
-    public class AndSpecification<T> : AbstractSpecification<T> {
+    public class AndSpecification<T> : AbstractSpecification<T> 
+    {
         private readonly AbstractSpecification<T> _leftSpecification;
         private readonly AbstractSpecification<T> _rightSpecification;
 
@@ -12,7 +13,8 @@ namespace Lixen.Core
             _leftSpecification = left;
         }
 
-        public override Expression<Func<T, bool>> ToExpression() {
+        public override Expression<Func<T, bool>> ToExpression() 
+        {
             var leftExpression = _leftSpecification.ToExpression();
             var rightExpression = _rightSpecification.ToExpression();
 
