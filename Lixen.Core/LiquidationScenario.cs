@@ -5,16 +5,16 @@ namespace Lixen.Core
 {
     public class LiquidationScenario : IScenario<LiquidationScenario>
     {
-        public LiquidationScenario(int id, string description, double liquidationFactor, Expression<Func<LiquidationScenario, bool>> liquidationFilter)
+        public LiquidationScenario(int id, string name, double liquidationFactor, Expression<Func<LiquidationScenario, bool>> liquidationFilter)
         {
             Id = id;
-            Description = description;
+            Name = name;
             LiquidationFactor = liquidationFactor;
             LiquidationFilter = liquidationFilter;
         }
 
         public int Id { get; }
-        public string Description { get; }
+        public string Name { get; }
         
         public double LiquidationFactor { get; }
         public Expression<Func<LiquidationScenario, bool>> LiquidationFilter { get; }

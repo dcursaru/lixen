@@ -6,7 +6,7 @@ namespace Lixen.Core
     public interface IScenario<T>
     {
         int Id { get; }
-        string Description { get; }
+        string Name { get; }
         double LiquidationFactor { get; }
         Expression<Func<T, bool>> LiquidationFilter { get; }
     }
