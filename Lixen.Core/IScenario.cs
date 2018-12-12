@@ -11,7 +11,7 @@ namespace Lixen.Core
         Expression<Func<T, bool>> LiquidationFilter { get; }
     }
 
-    public interface ILiquidable
+    public interface ILiquidatable
     {
         double LiquidationFactor { get; }
     }
