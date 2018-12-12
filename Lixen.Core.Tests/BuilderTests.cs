@@ -1,12 +1,11 @@
-using System;
 using Xunit;
 
 namespace Lixen.Core.Tests
 {
-    public class UnitTest1
+    public class BuilderTests
     {
         [Fact]
-        public void Test1()
+        public void BuilderCreatesAppropriateScenario()
         {
             // Arrange
             var builder = ScenarioBuilder.Create<LiquidationScenario>();
