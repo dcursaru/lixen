@@ -3,7 +3,7 @@ using System.Linq.Expressions;
 
 namespace Lixen.Core
 {
-    public interface IScenario<T>
+    public interface IScenario<T> where T: IPosition
     {
         int Id { get; }
         string Name { get; }
@@ -20,5 +20,17 @@ namespace Lixen.Core
     {
         string Id { get; }
         string Broker { get; }
+    }
+
+    public class Position : IPosition
+    {
+        public Position(string broker, string id)
+        {
+            Broker = broker;
+            Id = id;
+        }
+
+        public string Id { get; }
+        public string Broker { get; }
     }
 }
