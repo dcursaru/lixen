@@ -3,9 +3,9 @@ using System.Linq.Expressions;
 
 namespace Lixen.Core
 {
-    public class LiquidationScenario : IScenario<LiquidationScenario>
+    public class LiquidationScenario : IScenario<IPosition>
     {
-        public LiquidationScenario(int id, string name, double liquidationFactor, Expression<Func<LiquidationScenario, bool>> liquidationFilter)
+        public LiquidationScenario(int id, string name, double liquidationFactor, Expression<Func<IPosition, bool>> liquidationFilter)
         {
             Id = id;
             Name = name;
@@ -17,6 +17,6 @@ namespace Lixen.Core
         public string Name { get; }
         
         public double LiquidationFactor { get; }
-        public Expression<Func<LiquidationScenario, bool>> LiquidationFilter { get; }
+        public Expression<Func<IPosition, bool>> LiquidationFilter { get; }
     }
 }

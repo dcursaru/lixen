@@ -6,7 +6,7 @@ namespace Lixen.Core
     public class ScenarioBuilder
     {
         private Type _scenarioType;
-        private string _scenarioId;
+        private int _scenarioId;
         private AbstractSpecification<IPosition> _specification;
 
         private Dictionary<string, Type> _scenarioMap = new Dictionary<string, Type>
@@ -28,14 +28,14 @@ namespace Lixen.Core
 //            return OfType(typeof(T));
 //        }
         
-        public static ScenarioBuilder Create<T>() where T : IScenario<T>
+        public static ScenarioBuilder Create<T>() where T : IScenario<IPosition>
         {
             var builder = new ScenarioBuilder();
             builder.SetType(typeof(T));
             return builder;
         }
 
-        public ScenarioBuilder WithId(string scenarioId)
+        public ScenarioBuilder WithId(int scenarioId)
         {
             _scenarioId = scenarioId;
             return this;
@@ -47,9 +47,9 @@ namespace Lixen.Core
             return this;
         }
 
-        public IScenario<LiquidationScenario> Build()
+        public IScenario<IPosition> Build()
         {
-            return null;// new LiquidationScenario();
+            return new LiquidationScenario(_scenarioId, string.Empty, 10.0, _specification.ToExpression());
         }
         
     }
