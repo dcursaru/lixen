@@ -27,4 +27,6 @@ namespace Lixen.Core
                 body ?? throw new InvalidOperationException("Expression body cannot be null"), parameter);
         }
     }
+
+    
 }
