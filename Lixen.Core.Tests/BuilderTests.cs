@@ -71,6 +71,11 @@ namespace Lixen.Core.Tests
             {
                 _margin = 0.1d;
             }
+
+            public void CalculateMarginData2()
+            {
+                
+            }
         }
     }
 }
